@@ -13,7 +13,7 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "esnext",
+    "target": "es2015",
     "baseUrl": ".",
     "lib": [
       "es2019",
