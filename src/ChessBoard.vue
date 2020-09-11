@@ -120,7 +120,7 @@ export default {
     linear-gradient(-45deg, #5A3E2A 25%, transparent 25%),
     linear-gradient(45deg, transparent 75%, #5A3E2A 75%),
     linear-gradient(-45deg, transparent 75%, #5A3E2A 75%);
-  background-size: calc(var(--cellSize) * 2px) calc(var(--cellSize) * 2px);
+  background-size: 25% 25%;
   background-position: 
     0 0,
     0 calc(var(--cellSize) * 1px),

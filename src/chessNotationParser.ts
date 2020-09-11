@@ -90,6 +90,7 @@ export const tokenizator = (source: Array<string>) => {
 }
 
 export const normalizeNotation = (source: string) => {
+  console.log('Normalize notation:', source)
   let i18nSource = source
     .replaceAll('Кр', 'K')
     .replaceAll('Ф', 'Q')
