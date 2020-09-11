@@ -1,5 +1,5 @@
 <template>
-  <svg viewbox="0 0 45" class="chess-piece">
+  <svg viewbox="0 0 45 45" class="chess-piece">
     <g
       v-if="color === 'black'"
       class="piece-knight-g-black"
