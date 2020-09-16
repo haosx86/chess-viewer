@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { PieceColor } from '../chessRules'
+import { PieceColor } from './chessRules'
 
 export default {
   color: {

@@ -20,8 +20,8 @@ import RookPiece from './RookPiece.vue'
 import BishopPiece from './BishopPiece.vue'
 import KnightPiece from './KnightPiece.vue'
 import PawnPiece from './PawnPiece.vue'
-import figureProps from './particials/figureProps'
-import { BoardSquare, Piece } from './chessRules'
+import figureProps from '../figureProps'
+import { BoardSquare, Piece } from '../chessRules'
 
 export default defineComponent({
   components: {

@@ -173,7 +173,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import figureProps from './particials/figureProps'
+import figureProps from '../figureProps'
 
 export default defineComponent({
   props: figureProps

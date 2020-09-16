@@ -1,14 +1,16 @@
 <template>
-  <ChessBoard
-    :cellSize="cellSize"
-    :moves="movesState.moves"
+  <div
+    class="chess-board-wrapper"
     :style="{
-      '--cellSize': cellSize
+      width: cellSize * 8,
+      height: cellSize * 8,
     }"
-  />
+  >
+    <ChessBoard :cellSize="cellSize" />
+    <GamePlayer :moves="movesState" :cellSize="cellSize" />
+  </div>
   <div class="controls">
-    <input class="board-size" type="number" v-model="cellSizeText">
-
+    <input max="85" min="55" class="board-size" type="number" v-model="cellSizeText">
     <textarea
       class="notation-textarea"
       v-model="algNotation"
@@ -22,14 +24,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, reactive } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import ChessBoard from './ChessBoard.vue'
+import GamePlayer from './GamePlayer.vue'
 import { tokenizator, normalizeNotation } from './chessNotationParser'
 import { Move } from './chessRules'
 
 export default defineComponent({
   components: {
-    ChessBoard
+    ChessBoard,
+    GamePlayer,
   },
   setup() {
     let cellSize = ref(75)
@@ -90,11 +94,10 @@ export default defineComponent({
       },
       get: () => cellSize.value
     })
-    const emptyMovesList: Array<Move> = []
-    const movesState = reactive({moves: emptyMovesList})
+    const movesState = ref<Array<Move>>([])
 
     const parseNotation = () => {
-      movesState.moves = tokenizator(
+      movesState.value = tokenizator(
         normalizeNotation(algNotation.value)
       )
     }
@@ -113,7 +116,7 @@ export default defineComponent({
 <style>
 #app {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 
@@ -143,5 +146,9 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+}
+
+.chess-board-wrapper {
+  position: relative;
 }
 </style>
