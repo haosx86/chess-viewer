@@ -99,13 +99,9 @@ export const movePiece = (board: ChessBoard, from: BoardSquare, to: BoardSquare)
   } else if(board[from.rank][from.file - 1] === null) {
     throw new Error(`Move start sqare is empty: ${from.rank}${from.file}`)
   }
-  const movedPiece = Object.assign(
-    {},
-    board[from.rank][from.file - 1],
-    { square: to },
-  )
+  board[from.rank][from.file - 1]!.square = to
+  board[to.rank][to.file - 1] = board[from.rank][from.file - 1]
   board[from.rank][from.file - 1] = null
-  board[to.rank][to.file - 1] = movedPiece
 }
 
 export const capturePiece = (board: ChessBoard, from: BoardSquare, to: BoardSquare) => {
@@ -114,21 +110,13 @@ export const capturePiece = (board: ChessBoard, from: BoardSquare, to: BoardSqua
   } else if(board[from.rank][from.file - 1] === null) {
     throw new Error(`Capture start square is empty: ${from.rank}${from.file}`)
   }
-  const capturedPiece = board[to.rank][to.file - 1]
-  const movedPiece = Object.assign(
-    {},
-    board[from.rank][from.file - 1],
-    { square: to },
-  )
-  board[to.rank][to.file - 1] = movedPiece
+  board[from.rank][from.file - 1]!.square = to
+  board[to.rank][to.file - 1] = board[from.rank][from.file - 1]
   board[from.rank][from.file - 1] = null
-  return capturedPiece
 }
 
 export const removePiece = (board: ChessBoard, from: BoardSquare) => {
-  const removedPiece = board[from.rank][from.file - 1]
   board[from.rank][from.file - 1] = null
-  return removePiece
 }
 
 // TODO: implement chess rules check

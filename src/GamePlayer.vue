@@ -2,6 +2,7 @@
   <ChessPiece
     v-for="piece in chessBoardStateFlat"
     :key="piece.initialSquare.rank + piece.initialSquare.file"
+    :data-test="piece.initialSquare.rank + piece.initialSquare.file"
     :cellSize="cellSize"
     :pieceType="piece.piece"
     :square="piece.square"
@@ -55,7 +56,17 @@ export default defineComponent({
     const chessBoardStateFlat = computed(
       () => Object.values(
         <ChessBoard>chessBoardState.value
-      ).flat().filter(piece => piece !== null)
+      ).flat().filter(piece => piece !== null).sort((a, b) => {
+        const aKey = a.initialSquare.rank + a.initialSquare.file
+        const bKey = b.initialSquare.rank + b.initialSquare.file
+        if (aKey < bKey) {
+          return -1;
+        }
+        if (aKey < bKey) {
+          return 1;
+        }
+        return 0;
+      })
     )
 
     let movesDemoTimers: Array<any> = []
