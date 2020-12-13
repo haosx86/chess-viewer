@@ -1,37 +1,25 @@
 <template>
-  <component
-    v-if="fugureComponentName"
-    :is="fugureComponentName"
+  <!-- <component
+    v-if="pieces[`${pieceType}-${color}`]"
+    :is="pieces[`${pieceType}-${color}`]"
     :style="{
       transform: figureTransform
     }"
     :class="{
       'chess-piece_animated': isPieceAnimated
     }"
-    :color="color"
-  />
+  /> -->
+  <!-- {{pieces[`${pieceType}-${color}`]}} -->
+  DUMMY
 </template>
 
 <script lang="ts">
 import { computed, ref, watch, defineComponent, PropType } from 'vue'
-import KingPiece from './KingPiece.vue'
-import QueenPiece from './QueenPiece.vue'
-import RookPiece from './RookPiece.vue'
-import BishopPiece from './BishopPiece.vue'
-import KnightPiece from './KnightPiece.vue'
-import PawnPiece from './PawnPiece.vue'
-import figureProps from '../figureProps'
-import { BoardSquare, Piece } from '../chessRules'
+import { PieceColor } from './chessRules'
+import { BoardSquare, Piece } from './chessRules'
+import pieces from './pieces'
 
 export default defineComponent({
-  components: {
-    KingPiece,
-    QueenPiece,
-    RookPiece,
-    BishopPiece,
-    KnightPiece,
-    PawnPiece
-  },
   props: {
     pieceType: {
       type: String as PropType<Piece>,
@@ -55,26 +43,28 @@ export default defineComponent({
     square: {
       type: Object as PropType<BoardSquare>,
       required: true,
-      validator: (square: BoardSquare) => {
-        const isRankCorrect = [
-          'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'
-        ].includes(square.rank)
-        const isFileCorrect = square.file >= 1 
-          && square.file <=8
-          && Number.isInteger(square.file)
-        return isRankCorrect && isFileCorrect
-      }
+      // validator: (square: BoardSquare) => {
+      //   const isRankCorrect = [
+      //     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'
+      //   ].includes(square.rank)
+      //   const isFileCorrect = square.file >= 1 
+      //     && square.file <=8
+      //     && Number.isInteger(square.file)
+      //   return isRankCorrect && isFileCorrect
+      // }
     },
-    ...figureProps,
+    color: {
+      type: String as PropType<PieceColor>,
+      required: true,
+      // validator(value: PieceColor) {
+      //   return [
+      //     'black',
+      //     'white',
+      //   ].includes(value)
+      // }
+    },
   },
   setup(props) {
-    let fugureComponentName = computed(
-      () => 
-        props.pieceType &&
-        props.pieceType.charAt(0).toUpperCase()
-        + props.pieceType.slice(1)
-        + 'Piece'
-    )
 
     const squareCoords = (square: BoardSquare) => ({
       x: square.rank.charCodeAt(0) - 'a'.charCodeAt(0),
@@ -97,14 +87,12 @@ export default defineComponent({
 
     watch(() => props.cellSize, () => {
       isPieceAnimated.value = false
-
       setTimeout(() => {
         isPieceAnimated.value = true
       }, 36);
     })
 
     return {
-      fugureComponentName,
       figureTransform,
       isPieceAnimated,
     }
