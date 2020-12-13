@@ -2,8 +2,8 @@
   <div
     class="chess-board-wrapper"
     :style="{
-      width: cellSize * 8,
-      height: cellSize * 8,
+      width: `${cellSize * 8}px`,
+      height: `${cellSize * 8}px`,
     }"
   >
     <ChessBoard :cellSize="cellSize" />
@@ -116,39 +116,38 @@ export default defineComponent({
 <style>
 #app {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-
 }
 
 .notation-textarea {
   width: 200px;
   height: 600px;
-  margin: 0 auto;
+  margin: 0 100px;
 }
 
 .parse-button {
   height: 40px;
   width: 200px;
   margin: 0 auto;
-  margin: 24px 0 0 0;
+  margin: 24px 100px 0 100px;
 }
 
 .board-size {
   width: 200px;
-  margin: 0 0 24px 0;
+  margin: 0 100px 24px 100px;
 }
 
 .controls {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   flex-grow: 1;
 }
 
 .chess-board-wrapper {
   position: relative;
+  width: 10px;
 }
 </style>
