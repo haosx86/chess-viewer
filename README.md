@@ -1,28 +1,24 @@
-# vue-next-webpack-preview
+# Chess notation visualisation tool
 
-> Minimal webpack setup for Vue 3 (RC)
+This is simple visualisation tool for chess [`Algebraic notation`](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)).
 
-This is for preview purposes. There might be bugs and undocumented behavior differences from v2, which are expected.
+The default chess game moves are hard-coded in [`App.vue`](https://github.com/haosx86/chess-viewer/blob/master/src/App.vue) file, but it's possible to paste your own moves and visualize them.
 
-If you are using VSCode, Vetur isn't updated to take advantage of Vue 3's typing yet so intellisense in Vue files may not be fully functional (especially in templates).
+[`The parser`](https://github.com/haosx86/chess-viewer/blob/master/src/chessNotationParser.ts) accepts russian and engligh pieces letters.
 
-Also note that this is for configuration reference only. For real-world projects, it's recommended to use [`vite`](https://github.com/vitejs/vite) or [`@vue/cli`](https://github.com/vuejs/vue-cli).
 
-### Prerequisites
-- Node & NPM
-
-### Install
+## Install
 ```sh
-npm install
+yarn install
 ```
-### Usage
-##### Develop
+## Usage
+#### Develop
 ```sh
 # run dev server at localhost:8080
-npm run dev
+yarn dev
 ```
-##### Build
+#### Build
 ```sh
 # transpile js for deployment
-npm run build
+yarn build
 ```
