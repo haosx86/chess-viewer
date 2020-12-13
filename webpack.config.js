@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const devMode = process.env.NODE_ENV !== 'production';
 
 const plugins = [
   new VueLoaderPlugin(),
@@ -15,13 +14,9 @@ const plugins = [
   }),
 ];
 
-// if (devMode) {
-//   plugins.push(new webpack.HotModuleReplacementPlugin());
-// }
-
-module.exports = (env = {}) => ({
-  mode: env.prod ? 'production' : 'development',
-  devtool: env.prod ? 'source-map' : 'eval-cheap-module-source-map',
+module.exports = env => ({
+  mode: env.production ? 'production' : 'development',
+  devtool: env.production ? 'source-map' : 'eval-cheap-module-source-map',
   entry: path.resolve(__dirname, './src/main.ts'),
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -66,7 +61,10 @@ module.exports = (env = {}) => ({
       }
     ]
   },
-  plugins,
+  plugins: [
+    ...plugins,
+    ...(env.production ? [] : [new webpack.HotModuleReplacementPlugin()]),
+  ],
   devServer: {
     inline: true,
     hot: true,

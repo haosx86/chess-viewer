@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve",
-    "build": "webpack --env.prod"
+    "build": "webpack --env production"
   },
   "dependencies": {
     "vue": "^3.0.4"
