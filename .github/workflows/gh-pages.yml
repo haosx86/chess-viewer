@@ -7,17 +7,17 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
 
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2-beta
       with:
-        node-version: '12.x'
+        node-version: '15.x'
 
     - name: Cache dependencies
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
