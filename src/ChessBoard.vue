@@ -3,8 +3,8 @@
     class="chess-board"
     :viewport="`0 0 ${cellSize * 8} ${cellSize * 8}`"
     :style="{
-      width: cellSize * 8,
-      height: cellSize * 8,
+      width: `${cellSize * 8}px`,
+      height: `${cellSize * 8}px`,
     }"
   >
     <polygon
